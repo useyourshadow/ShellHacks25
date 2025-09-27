@@ -2,8 +2,16 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { User, Plus } from 'lucide-react';
 import { Button } from './ui/Button';
+import { useEffect, useState } from 'react';
 
 export function Header() {
+  const [nurseName, setNurseName] = useState<string>("");
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("nurseName"); // Set this at login
+    if (storedName) setNurseName(storedName);
+  }, []);
+
   return (
     <header className="flex items-center justify-between p-4 border-b bg-white">
       <div className="flex items-center gap-8">
@@ -28,7 +36,7 @@ export function Header() {
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <User className="w-5 h-5" />
-          <span>Logged in: <strong>Dr. Taylor</strong></span>
+          <span>Logged in: <strong>{nurseName || "Loading..."}</strong></span>
         </div>
         <Button>
           <Plus className="w-4 h-4 mr-2" />

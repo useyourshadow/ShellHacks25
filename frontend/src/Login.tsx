@@ -2,10 +2,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -16,8 +19,11 @@ const handleSubmit = async (e: React.FormEvent) => {
       password,
     });
 
-    console.log("Login successful:", response.data);
-    toast.success("Login successful");
+      const nurse = response.data.nurse;
+     localStorage.setItem("nurseId", nurse.id);
+      localStorage.setItem("nurseName", nurse.name);     
+       toast.success("Login successful");
+      navigate("/dashboard"); // redirect to dashboard
 
     // e.g., store token or navigate
   } catch (error: any) {

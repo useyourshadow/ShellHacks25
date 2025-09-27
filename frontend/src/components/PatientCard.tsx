@@ -6,7 +6,7 @@ import { User } from 'lucide-react';
 interface Patient {
   name: string;
   age: number;
-  condition: string;
+  disease: string;
 }
 
 interface PatientCardProps {
@@ -34,7 +34,7 @@ export function PatientCard({ patient, isSelected, onSelect }: PatientCardProps)
           <div className="text-sm text-gray-500">
             <span>Age {patient.age}</span>
             <span className="inline-block mx-1.5 w-1 h-1 bg-gray-300 rounded-full align-middle"></span>
-            <span className="bg-purple-100 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">{patient.condition}</span>
+            <span className="bg-purple-100 text-purple-700 text-xs font-medium px-2 py-0.5 rounded-full">{patient.disease}</span>
           </div>
         </div>
       </div>
@@ -43,7 +43,6 @@ export function PatientCard({ patient, isSelected, onSelect }: PatientCardProps)
           isSelected ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
         }`}
       >
-        {isSelected ? 'Selected' : 'Select'}
       </button>
     </div>
   );
