@@ -1,14 +1,30 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Login with:", email, password);
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/nurses/login", {
+      email,
+      password,
+    });
+
+    console.log("Login successful:", response.data);
+    toast.success("Login successful");
+
+    // e.g., store token or navigate
+  } catch (error: any) {
+    console.error("Login failed:", error.response?.data || error.message);
+     toast.error(error.response?.data?.detail || "Login failed");
+    }};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50"><div
