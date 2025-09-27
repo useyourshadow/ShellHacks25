@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 export function Hero() {
   return (
@@ -40,9 +41,12 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <button className="btn btn-primary btn-lg bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-none">
+              <Link
+                to="/login"
+                className="btn btn-primary btn-lg bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 border-none"
+              >
                 Get Started Today
-              </button>
+              </Link>
               <button className="btn btn-outline btn-lg border-2 border-blue-200 text-blue-700 hover:bg-blue-50 px-8 py-4 rounded-2xl">
                 Learn More
               </button>

@@ -1,21 +1,16 @@
-import { Hero } from './landingPage/Hero'
-import { Features } from './landingPage/Features'
-import { HowItWorks } from './landingPage/HowItWorks'
-import { FAQ } from './landingPage/FAQ'
-import { CallToAction } from './landingPage/CallToAction'
+import { Routes, Route } from "react-router-dom";
+import Home from './Home';
+import { Login } from './Login';
 
 function App() {
-
   return (
-    <div className = "min-h-screen">
-      <Hero/>
-      <Features/>
-      <HowItWorks/>
-      <FAQ/>
-      <CallToAction/>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
-    
-  )
+  );
 }
 
-export default App
+export default App;
