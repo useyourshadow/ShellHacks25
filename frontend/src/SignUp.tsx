@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -16,7 +19,21 @@ export function Signup() {
       return;
     }
 
-    console.log("Signup with:", { name, email, password });
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/nurses/register", {
+        name,
+        email,
+        password,
+      });
+
+    toast.success("Register successful");
+
+      // redirect to login
+      navigate("/login");
+    } catch (error: any) {
+      console.error("Error during signup:", error);
+      alert(error.response?.data?.detail || "Signup failed");
+    }
   };
 
   return (
@@ -27,7 +44,6 @@ export function Signup() {
           alt="MindCare background"
           className="w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0"></div>
       </div>
 
       {/* Signup Card */}
