@@ -21,12 +21,12 @@ class PatientService:
             try:
                 result = await conn.fetchrow(
                     """
-                    INSERT INTO patients (name, phone_number, timezone, age, care_giver, care_giver_relation, disease)
+                    INSERT INTO patients (name, phone_number, age, care_giver, care_giver_relation, disease, nurse_id)
                     VALUES ($1, $2, $3, $4, $5, $6, $7)
                     RETURNING id
                     """,
-                    patient.name, patient.phone_number, patient.timezone,
-                    patient.age, patient.care_giver, patient.care_giver_relation, patient.disease
+                    patient.name, patient.phone_number,
+                    patient.age, patient.care_giver, patient.care_giver_relation, patient.disease, nurse_id
                 )
                 return result['id']
             except asyncpg.UniqueViolationError:
@@ -36,7 +36,7 @@ class PatientService:
             async with self.pool.acquire() as conn:
                 results = await conn.fetch(
                     """
-                    SELECT id, name, phone_number, timezone, age, care_giver, care_giver_relation, disease
+                    SELECT id, name, phone_number, age, care_giver, care_giver_relation, disease
                     FROM patients
                     WHERE nurse_id = $1
                     ORDER BY name
@@ -50,7 +50,7 @@ class PatientService:
             if nurse_id:
                 results = await conn.fetch(
                     """
-                    SELECT DISTINCT p.id, p.name, p.phone_number, p.timezone,
+                    SELECT DISTINCT p.id, p.name, p.phone_number,
                                     p.age, p.care_giver, p.care_giver_relation, p.disease,
                                     p.created_at, p.updated_at
                     FROM patients p
@@ -63,7 +63,7 @@ class PatientService:
             else:
                 results = await conn.fetch(
                     """
-                    SELECT id, name, phone_number, timezone,
+                    SELECT id, name, phone_number,
                            age, care_giver, care_giver_relation, disease,
                            created_at, updated_at
                     FROM patients
@@ -76,7 +76,7 @@ class PatientService:
         async with self.pool.acquire() as conn:
             result = await conn.fetchrow(
                 """
-                SELECT id, name, phone_number, timezone,
+                SELECT id, name, phone_number,
                        age, care_giver, care_giver_relation, disease,
                        created_at, updated_at
                 FROM patients

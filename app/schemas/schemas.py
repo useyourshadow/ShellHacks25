@@ -24,7 +24,6 @@ class NurseLogin(BaseModel):
 class PatientBase(BaseModel):
     name: str
     phone_number: str
-    timezone: str
     age: int
     care_giver: str
     care_giver_relation: str
@@ -33,7 +32,6 @@ class PatientBase(BaseModel):
 class PatientUpdate(BaseModel):
     name: Optional[str] = None
     phone_number: Optional[str] = None
-    timezone: Optional[str] = None
 
 # Prescription Models
 class PrescriptionBase(BaseModel):
