@@ -52,8 +52,6 @@ export default function Overview() {
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleFormSubmit}
       />
-
-
         <Dashboard refreshKey={refreshKey} />
     </Tabs.Root>
   );

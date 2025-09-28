@@ -130,7 +130,7 @@ export function PatientDetails({ patientId }: PatientDetailsProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 h-full space-y-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 h-full min-h-screen w-full space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -178,7 +178,7 @@ export function PatientDetails({ patientId }: PatientDetailsProps) {
         </div>
         <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wide">Disease</span>
+            <span className="text-xs text-gray-500 uppercase tracking-wide">Condition</span>
           </div>
           <div className="text-base sm:text-lg font-semibold text-gray-900">{patient.disease}</div>
         </div>

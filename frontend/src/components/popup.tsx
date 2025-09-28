@@ -164,7 +164,7 @@ function PatientMedicationModal({ isOpen, onClose, onSubmit }: PatientMedication
                 </div>
                 {/* Disease */}
                 <div className="space-y-1">
-                  <label htmlFor="disease" className="text-sm font-medium text-gray-600">Disease/Condition *</label>
+                  <label htmlFor="disease" className="text-sm font-medium text-gray-600">Condition *</label>
                   <input id="disease" type="text" {...register('disease', { required: 'Condition is required' })} placeholder="Enter primary condition" className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
                   {errors.disease && <p className="text-xs text-red-500">{errors.disease.message}</p>}
                 </div>
