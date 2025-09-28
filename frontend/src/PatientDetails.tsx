@@ -1,5 +1,27 @@
 import { ArrowRight, Edit, Trash2, Phone, Clock, User, Plus, AlertCircle } from "lucide-react";
-import { Patient, Prescription } from "../App";
+
+interface Patient {
+  id: string;
+  name: string;
+  phone_number: string;
+  timezone: string;
+  age: number;
+  care_giver: string;
+  care_giver_relation: string;
+  disease: string;
+}
+
+interface Prescription {
+  id: string;
+  patient_id: string;
+  medication_name: string;
+  dosage: string;
+  instructions: string;
+  schedule?: string;
+  lastTaken?: string;
+  nextDue?: string;
+}
+
 
 interface PatientDetailsProps {
   patient: Patient | null;
@@ -65,7 +87,7 @@ export function PatientDetails({
               <User className="h-5 w-5 text-blue-500" />
             </div>
             <div className="text-xl sm:text-2xl font-semibold text-gray-900">{patient.age}</div>
-            <div className="text-sm text-gray-600">{patient.condition}</div>
+            <div className="text-sm text-gray-600">{patient.disease}</div>
           </div>
           
           <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
@@ -73,7 +95,7 @@ export function PatientDetails({
               <span className="text-xs text-gray-500 uppercase tracking-wide">Phone</span>
               <Phone className="h-5 w-5 text-purple-500" />
             </div>
-            <div className="text-base sm:text-lg font-semibold text-gray-900">{patient.phone}</div>
+            <div className="text-base sm:text-lg font-semibold text-gray-900">{patient.phone_number}</div>
             <div className="text-sm text-gray-600">Primary contact</div>
           </div>
           
@@ -83,10 +105,10 @@ export function PatientDetails({
               <User className="h-5 w-5 text-teal-500" />
             </div>
             <div className="text-base sm:text-lg font-semibold text-gray-900">
-              {patient.caregiver?.split(' (')[0] || 'N/A'}
+              {patient.care_giver?.split(' (')[0] || 'N/A'}
             </div>
             <div className="text-sm text-gray-600">
-              {patient.caregiver?.match(/\((.*?)\)/)?.[1] || ''}
+              {patient.care_giver?.match(/\((.*?)\)/)?.[1] || ''}
             </div>
           </div>
         </div>
@@ -125,7 +147,7 @@ export function PatientDetails({
                     {prescriptions.map((prescription, index) => (
                       <tr key={prescription.id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                         <td className="py-3">
-                          <div className="font-medium text-gray-900">{prescription.medicine}</div>
+                          <div className="font-medium text-gray-900">{prescription.medication_name}</div>
                         </td>
                         <td className="py-3">
                           <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700 border border-gray-200">
@@ -189,7 +211,7 @@ export function PatientDetails({
                   <div key={prescription.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h4 className="font-medium text-gray-900">{prescription.medicine}</h4>
+                        <h4 className="font-medium text-gray-900">{prescription.medication_name}</h4>
                         <div className="flex items-center gap-3 mt-1">
                           <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-white text-gray-700 border border-gray-200">
                             {prescription.dosage}
