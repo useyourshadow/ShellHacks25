@@ -1,7 +1,6 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { useState } from "react";
 import { Header } from "./Header";
-import Setup from "../Setup";
 import { Dashboard } from "../pages/Dashboard";
 import PatientMedicationModal from "../components/popup";
 import axios from "axios";
@@ -54,13 +53,8 @@ export default function Overview() {
         onSubmit={handleFormSubmit}
       />
 
-      <Tabs.Content value="setup" className="flex-1 overflow-auto">
-        <Setup />
-      </Tabs.Content>
 
-      <Tabs.Content value="overview" className="flex-1 overflow-auto">
         <Dashboard refreshKey={refreshKey} />
-      </Tabs.Content>
     </Tabs.Root>
   );
 }

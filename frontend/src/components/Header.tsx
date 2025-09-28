@@ -19,28 +19,7 @@ export function Header({ onAddPatient }: HeaderProps) {  const [nurseName, setNu
       <div className="flex items-center gap-8">
         <h1 className="text-xl font-bold text-gray-800">Voice AI Care</h1>
         {/* Tab List only */}
-        <Tabs.List className="flex gap-4">
-          <Tabs.Trigger
-            value="setup"
-            className="px-3 py-1.5 text-sm font-semibold text-gray-600 
-              data-[state=active]:text-blue-600 
-              data-[state=active]:border-b-2 
-              data-[state=active]:border-blue-600 
-              focus:outline-none"
-          >
-            Setup
-          </Tabs.Trigger>
-          <Tabs.Trigger
-            value="overview"
-            className="px-3 py-1.5 text-sm font-semibold text-gray-600 
-              data-[state=active]:text-blue-600 
-              data-[state=active]:border-b-2 
-              data-[state=active]:border-blue-600 
-              focus:outline-none"
-          >
-            Overview
-          </Tabs.Trigger>
-        </Tabs.List>
+         
       </div>
 
       <div className="flex items-center gap-4">

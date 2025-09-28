@@ -1,6 +1,7 @@
 import asyncpg
 from typing import List, Optional
 from ..schemas.schemas import PrescriptionBase, PrescriptionUpdate
+import logging
 
 
 class PrescriptionService:
@@ -58,28 +59,32 @@ class PrescriptionService:
             return dict(result) if result else None
 
     async def update_prescription(self, prescription_id: str, prescription_update: PrescriptionUpdate) -> bool:
+        logging.info(f"Updating prescription {prescription_id} with {prescription_update.dict(exclude_unset=True)}")
         async with self.pool.acquire() as conn:
             update_fields = []
             params = []
             param_count = 1
 
-            for field, value in prescription_update.model.model_dump(exclude_unset=True):
+            for field, value in prescription_update.dict(exclude_unset=True).items():
                 update_fields.append(f"{field} = ${param_count}")
                 params.append(value)
                 param_count += 1
 
             if not update_fields:
                 exists = await conn.fetchval("SELECT 1 FROM prescriptions WHERE id = $1", prescription_id)
+                logging.info(f"No fields to update, exists={exists}")
                 return exists is not None
 
             query = f"""
-                UPDATE prescriptions 
+                UPDATE prescriptions
                 SET {', '.join(update_fields)}, updated_at = NOW()
                 WHERE id = ${param_count}
             """
             params.append(prescription_id)
+            logging.info(f"Executing query: {query} with params {params}")
 
             result = await conn.execute(query, *params)
+            logging.info(f"Update result: {result}")
             return result == "UPDATE 1"
 
     async def delete_prescription(self, prescription_id: str) -> bool:
