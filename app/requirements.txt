@@ -3,5 +3,5 @@ pydantic==2.5.1
 uvicorn[standard]==0.23.2
 python-dotenv==1.0.0
 passlib[bcrypt]==1.7.4
-asyncpg==1.2.1
+asyncpg==0.30.0
 vapi==0.6.5
