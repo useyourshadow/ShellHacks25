@@ -1,7 +1,7 @@
 import asyncpg
 from typing import List, Optional
 from datetime import datetime, time
-from schemas.schemas import ReminderSetup, ReminderScheduleBase, ReminderUpdate
+from ..schemas.schemas import ReminderSetup, ReminderScheduleBase, ReminderUpdate
 
 
 class ReminderService:

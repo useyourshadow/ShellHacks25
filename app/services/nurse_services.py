@@ -1,6 +1,6 @@
 import asyncpg
 from typing import List, Optional
-from schemas.schemas import NurseBase, NurseUpdate, NurseLogin
+from ..schemas.schemas import NurseBase, NurseUpdate, NurseLogin
 
 
 class NurseService:

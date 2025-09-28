@@ -1,20 +1,20 @@
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
-from config import DATABASE_URL, pwd_context, VAPI_API_KEY
+from .config import DATABASE_URL, pwd_context, VAPI_API_KEY
 import asyncpg
 import logging
 from vapi import Vapi
 from vapi.types.workflow_overrides import WorkflowOverrides
 from vapi.types.schedule_plan import SchedulePlan
-from services.nurse_services import NurseService
-from services.patient_services import PatientService
-from services.prescription_services import PrescriptionService
-from services.reminder_services import ReminderService
-from routes.patient_routes import create_patient_router
-from routes.prescription_routes import create_prescription_router
-from routes.nurse_routes import create_nurse_router
-from routes.reminder_routes import create_reminder_router
-from routes.call import create_test_router
+from .services.nurse_services import NurseService
+from .services.patient_services import PatientService
+from .services.prescription_services import PrescriptionService
+from .services.reminder_services import ReminderService
+from .routes.patient_routes import create_patient_router
+from .routes.prescription_routes import create_prescription_router
+from .routes.nurse_routes import create_nurse_router
+from .routes.reminder_routes import create_reminder_router
+from .routes.call import create_test_router
 
 # Module-level logger
 logger = logging.getLogger(__name__)

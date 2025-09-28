@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from schemas.schemas import PatientBase, PatientUpdate
-from services.patient_services import PatientService
+from ..schemas.schemas import PatientBase, PatientUpdate
+from ..services.patient_services import PatientService
 
 def create_patient_router(patient_service: PatientService) -> APIRouter:
     router = APIRouter(prefix="/patients", tags=["patients"])

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from schemas.schemas import PatientBase, PatientUpdate
-from services.patient_services import PatientService
-from services.nurse_services import NurseService
-from schemas.schemas import NurseBase, NurseLogin
+from ..schemas.schemas import PatientBase, PatientUpdate
+from ..services.patient_services import PatientService
+from ..services.nurse_services import NurseService
+from ..schemas.schemas import NurseBase, NurseLogin
 
 def create_nurse_router(nurse_service: NurseService, patient_service: PatientService) -> APIRouter:
     router = APIRouter(prefix="/nurses", tags=["nurses"])
