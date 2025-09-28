@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { User, Phone, Edit, Trash2, Plus, AlertCircle, X } from "lucide-react";
-
+import { SetupCallModal } from "../SetupCallModal";
 interface PatientDetailsProps {
   patientId: string | null;
 }
@@ -29,9 +29,14 @@ interface Patient {
 
 export function PatientDetails({ patientId }: PatientDetailsProps) {
   const [patient, setPatient] = useState<Patient | null>(null);
+  // at top inside PatientDetails component
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPrescription, setSelectedPrescription] = useState<Prescription | null>(null);
+
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
   const [editing, setEditing] = useState<Prescription | null>(null);
   const [adding, setAdding] = useState(false);
+
   const [formData, setFormData] = useState({
     medication_name: "",
     dosage: "",
@@ -109,9 +114,13 @@ export function PatientDetails({ patientId }: PatientDetailsProps) {
 };
 
 
-  const onSetupCall = (patientId: string, prescriptionId: string) => {
-    console.log("Setup call", patientId, prescriptionId);
-  };
+const onSetupCall = (patientId: string, prescriptionId: string) => {
+  const presc = prescriptions.find(p => p.id === prescriptionId);
+  if (!presc) return;
+  setSelectedPrescription(presc);
+  setIsModalOpen(true);
+};
+
 
   const onEditPatient = (id: string) => {
     console.log("Edit patient", id);
@@ -142,13 +151,6 @@ export function PatientDetails({ patientId }: PatientDetailsProps) {
             </div>
           </div>
         </div>
-        <button 
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors w-full sm:w-auto justify-center"
-          onClick={() => onEditPatient(patient.id)}
-        >
-          <Edit className="h-4 w-4" />
-          Edit Page
-        </button>
       </div>
 
       {/* Patient Info Cards */}
@@ -175,12 +177,6 @@ export function PatientDetails({ patientId }: PatientDetailsProps) {
           </div>
           <div className="text-base sm:text-lg font-semibold text-gray-900">{patient.care_giver}</div>
           <div className="text-sm text-gray-600">{patient.care_giver_relation}</div>
-        </div>
-        <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wide">Condition</span>
-          </div>
-          <div className="text-base sm:text-lg font-semibold text-gray-900">{patient.disease}</div>
         </div>
       </div>
 
@@ -283,6 +279,22 @@ export function PatientDetails({ patientId }: PatientDetailsProps) {
           </div>
         </div>
       )}
+  
+      <SetupCallModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      patientName={patient.name}
+      prescriptionId={selectedPrescription?.id}
+      onSubmit={(data) => {
+        console.log("Call scheduled:", data);
+        refreshPrescriptions(); // refresh after scheduling if needed
+      }}
+    />
+
     </div>
+    
   );
+  
 }
+
+
