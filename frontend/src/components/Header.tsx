@@ -1,4 +1,3 @@
-import * as Tabs from "@radix-ui/react-tabs";
 import { User, Plus } from "lucide-react";
 import { Button } from "./ui/Button";
 import { useEffect, useState } from "react";

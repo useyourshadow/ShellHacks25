@@ -17,7 +17,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
     const picker = new Pikaday({
       field: inputRef.current,
       format: "YYYY-MM-DD",
-      onSelect: (date) => {
+      onSelect: (date:Date) => {
         onChange(date.toISOString().split("T")[0]); // return YYYY-MM-DD
       },
     });
