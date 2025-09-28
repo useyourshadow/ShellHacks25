@@ -20,7 +20,7 @@ export function Signup() {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/nurses/register", {
+       await axios.post("http://127.0.0.1:8000/nurses/register", {
         name,
         email,
         password,
