@@ -3,8 +3,11 @@ import { User, Plus } from "lucide-react";
 import { Button } from "./ui/Button";
 import { useEffect, useState } from "react";
 
-export function Header() {
-  const [nurseName, setNurseName] = useState<string>("");
+interface HeaderProps {
+  onAddPatient?: () => void;
+}
+
+export function Header({ onAddPatient }: HeaderProps) {  const [nurseName, setNurseName] = useState<string>("");
 
   useEffect(() => {
     const storedName = localStorage.getItem("nurseName"); // Set this at login
@@ -47,7 +50,7 @@ export function Header() {
             Logged in: <strong>{nurseName || "Loading..."}</strong>
           </span>
         </div>
-        <Button>
+        <Button onClick={onAddPatient}>
           <Plus className="w-4 h-4 mr-2" />
           Add Patient
         </Button>

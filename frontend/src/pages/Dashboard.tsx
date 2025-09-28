@@ -1,20 +1,22 @@
-import { useState } from 'react';
-import { Header } from '../components/Header';
-import { Sidebar } from '../components/Sidebar';
-import { PatientDetails } from '../components/PatientDetails';
+import { useState } from "react";
+import { Sidebar } from "../components/Sidebar";
+import { PatientDetails } from "../components/PatientDetails";
 
-export function Dashboard() {
+interface DashboardProps {
+  refreshKey: number;
+}
+
+export function Dashboard({ refreshKey }: DashboardProps) {
   const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
 
   return (
-    <div className="h-screen w-screen bg-gray-50 flex flex-col">
-      <main className="flex flex-1 overflow-hidden">
-        <Sidebar
-          selectedPatientId={selectedPatientId}
-          onPatientSelect={setSelectedPatientId}
-        />
-        <PatientDetails patientId={selectedPatientId} />
-      </main>
+    <div className="flex flex-1 overflow-hidden">
+      <Sidebar
+        key={refreshKey} // remounts Sidebar after new patient
+        selectedPatientId={selectedPatientId}
+        onPatientSelect={setSelectedPatientId}
+      />
+      <PatientDetails patientId={selectedPatientId} />
     </div>
   );
 }
