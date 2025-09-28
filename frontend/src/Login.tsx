@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export function Login() {
@@ -100,9 +101,9 @@ const handleSubmit = async (e: React.FormEvent) => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             Don’t have an account?{" "}
-            <a href="/signup" className="text-blue-600 hover:underline">
-              Sign up
-            </a>
+            <Link to="/signup" className="text-blue-600 hover:underline">
+            Sign up
+            </Link>
           </motion.p>
         </motion.div>
       </motion.div>

@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from ..services.patient_services import PatientService
-from ..services.prescription_services import PrescriptionService
+from services.patient_services import PatientService
+from services.prescription_services import PrescriptionService
 from vapi import Vapi
 from vapi.types.workflow_overrides import WorkflowOverrides
-from ..config import VAPI_API_KEY
+from config import VAPI_API_KEY
 from vapi.types.schedule_plan import SchedulePlan
 from datetime import datetime, timedelta, timezone
 

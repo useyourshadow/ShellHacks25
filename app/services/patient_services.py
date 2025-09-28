@@ -1,6 +1,6 @@
 import asyncpg
 from typing import List, Optional
-from ..schemas.schemas import PatientBase, PatientUpdate
+from schemas.schemas import PatientBase, PatientUpdate
 from typing import List
 
 

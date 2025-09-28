@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ..schemas.schemas import ReminderSetup, ReminderScheduleBase, ReminderUpdate
-from ..services.reminder_services import ReminderService
+from schemas.schemas import ReminderSetup, ReminderScheduleBase, ReminderUpdate
+from services.reminder_services import ReminderService
 
 
 def create_reminder_router(reminder_service: ReminderService) -> APIRouter:

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ..schemas.schemas import PrescriptionBase, PrescriptionUpdate
-from ..services.prescription_services import PrescriptionService
+from schemas.schemas import PrescriptionBase, PrescriptionUpdate
+from services.prescription_services import PrescriptionService
 
 
 def create_prescription_router(prescription_service: PrescriptionService) -> APIRouter:

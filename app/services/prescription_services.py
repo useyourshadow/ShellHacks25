@@ -1,6 +1,6 @@
 import asyncpg
 from typing import List, Optional
-from ..schemas.schemas import PrescriptionBase, PrescriptionUpdate
+from schemas.schemas import PrescriptionBase, PrescriptionUpdate
 import logging
 
 
