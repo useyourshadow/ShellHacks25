@@ -8,7 +8,6 @@ export function Dashboard() {
 
   return (
     <div className="h-screen w-screen bg-gray-50 flex flex-col">
-      <Header />
       <main className="flex flex-1 overflow-hidden">
         <Sidebar
           selectedPatientId={selectedPatientId}

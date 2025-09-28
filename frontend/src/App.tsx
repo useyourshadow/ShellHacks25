@@ -4,6 +4,7 @@ import { Login } from './Login';
 import { Toaster } from "react-hot-toast";
 import { Signup } from "./SignUp";
 import { Dashboard } from "./pages/Dashboard";
+import Overview from "./components/Overview";
 function App() {
   return (
     <div>
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element ={<Signup/>}/>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Overview />} />
 
       </Routes>
     </div>
