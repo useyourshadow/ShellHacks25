@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ArrowRight, Edit, Trash2, Phone, User, Plus, Clock, AlertCircle } from "lucide-react";
+import { User, Plus, AlertCircle } from "lucide-react";
 
 interface Patient {
   id: string;
